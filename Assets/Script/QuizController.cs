@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using UnityEngine.SceneManagement;
 
 public class QuizController : MonoBehaviour
 {   
@@ -62,6 +63,7 @@ public class QuizController : MonoBehaviour
     //Wrong이미지를 2초간 띄운뒤 꺼집니다.
     void CheckisWrong(){
         if(isWrong && wrongTime > 0){
+            wrongImage.gameObject.SetActive(true);
             wrongTime -= Time.deltaTime;
             wrongImage.alpha = Mathf.Lerp(0, maxTime, wrongTime);
         }
@@ -88,7 +90,9 @@ public class QuizController : MonoBehaviour
             answer1.text = "";
             answer2.text = "";
             answer3.text = "";
-            wrongImage.gameObject.SetActive(true);
+            
+            CheckisWrong();
+
             isWrong = true;
         }
     }
@@ -105,5 +109,9 @@ public class QuizController : MonoBehaviour
             renderer.material.SetFloat("_DessolvePower", dessolveTime );
             dessolveTime += (Time.deltaTime / 10);
         }
+    }
+
+    public void OnFinishGame(){
+        SceneManager.LoadScene(0);
     }
 }

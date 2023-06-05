@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class QuizController : MonoBehaviour
 {   
+    [Title("UISetting")]
     public TMP_InputField answer1;
     public TMP_InputField answer2;
     public TMP_InputField answer3;
@@ -20,12 +22,11 @@ public class QuizController : MonoBehaviour
     float maxTime = 2;
     float clearTime;
 
-
+    [Title("cageCatController")]
     public GameObject cageCat;
     public GameObject cage;
 
-    public Camera camera;
-    public Vector3 offset = new Vector3(0,0,1);
+    public Transform offset;
     Renderer renderer;
     float dessolveTime;
     bool isDessolve = false;
@@ -38,7 +39,7 @@ public class QuizController : MonoBehaviour
         ClearTimeCheck();
         DessolveCage();
     }
-
+    //정답을 적을 캔버스를 띄웁니다.
     public void OnKeyBTN(){
         if(!isAnswer){
             answerCanvas.gameObject.SetActive(true);
@@ -49,6 +50,7 @@ public class QuizController : MonoBehaviour
             isAnswer = false;
         }
     }
+    //게임시작부터 계속 게임플레이 시간을 체크합니다.
     public void ClearTimeCheck(){
         if(!isClear){
             clearTime += Time.deltaTime;
@@ -76,8 +78,11 @@ public class QuizController : MonoBehaviour
             answerCanvas.gameObject.SetActive(false);
             finishCanvas.gameObject.SetActive(true);
             isClear = true;
-            cageCat.transform.position = camera.transform.position + offset;
-            Invoke("Dessolve", 1f);
+            cageCat.transform.position = offset.transform.position;
+            cageCat.transform.rotation = offset.transform.rotation;
+
+            
+            Invoke("Dessolve", 0.1f);
         }
         else {
             answer1.text = "";
@@ -87,14 +92,16 @@ public class QuizController : MonoBehaviour
             isWrong = true;
         }
     }
-
+    // 디솔브를 시작유무를 결정합니다.
     void Dessolve(){
         isDessolve = true;
     }
 
+    //메테이얼 변수를 통해 Dessolve를 실행합니다.
     void DessolveCage(){
         if(isDessolve){
-            cageCat.transform.position = camera.transform.position + offset;
+            cageCat.transform.position = offset.transform.position;
+            cageCat.transform.rotation = offset.transform.rotation;
             renderer.material.SetFloat("_DessolvePower", dessolveTime );
             dessolveTime += (Time.deltaTime / 10);
         }

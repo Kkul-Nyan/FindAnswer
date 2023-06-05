@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    //슬라이더값에 변동이 생기면 뮤트여부이미지와 사운드사이즈텍스쳐에 값을 전달합니다.
     public void SoundSizeSilder(){
         soundSize = soundSlider.value;
         soundInput.text = soundSize.ToString();
@@ -28,15 +29,18 @@ public class SoundManager : MonoBehaviour
         IsMute();
     }
 
+    //사운드사이즈텍스쳐에 변동이 생기면 뮤트여부이미지와 슬라이더값에 값을 전달합니다.
     public void SoundController(){
         soundSize = float.Parse(soundInput.text);
         soundSlider.value = soundSize;
         IsMute();
     }
 
+    //사운드를 실제적으로 조정합니다. AudioLisener를 조절하기떄문에, 변수값을 1로 기준을 잡았습니다.
     void IsMute(){
         GameManager.instance.soundSize = (soundSize / 100f);
 
+        //무음여부에따라 무음이미지를 변경합니다.
         if(soundSize <= 0){
             GameManager.instance.isMute = true;
             soundImage.sprite = soundSprites[1];
@@ -50,6 +54,7 @@ public class SoundManager : MonoBehaviour
         GameManager.instance.SoundChange();
     }
 
+    //무음 여부에 따라 무음 이미지를 변경하고, 사운드를 무음화 시킵니다.
     public void OnMuteButton(){
         if(GameManager.instance.isMute == false){
             GameManager.instance.isMute = true;

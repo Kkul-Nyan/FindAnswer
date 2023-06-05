@@ -110,8 +110,4 @@ public class QuizController : MonoBehaviour
             dessolveTime += (Time.deltaTime / 10);
         }
     }
-
-    public void OnFinishGame(){
-        SceneManager.LoadScene(0);
-    }
 }

@@ -23,9 +23,10 @@ public class PlaneAR : MonoBehaviour
     //처음 Plane포인트 위치에 오브젝트를 생성합니다. 목표물인 CageCat을 바닥에 생성해두기위한 스크립트입니다.
     //실행될시 게임이 준비되었다는 madeGoal을 true로합니다.
     void Update(){
+        if(madeGoal == false){
             Vector3 centerPos = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
             
-            arRaycastManager.Raycast(centerPos, hits, TrackableType.PlaneWithinPolygon);
+            arRaycastManager.Raycast(centerPos, hits, TrackableType.Planes);
 
             if(hits.Count > 0){
                 Pose placePosition = hits[0].pose;
@@ -33,5 +34,6 @@ public class PlaneAR : MonoBehaviour
                 gameObject.transform.SetPositionAndRotation(placePosition.position, placePosition.rotation);
                 madeGoal = true;
             }
-    } 
+        } 
+    }
 }

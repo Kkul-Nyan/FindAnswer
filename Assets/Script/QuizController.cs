@@ -16,12 +16,15 @@ public class QuizController : MonoBehaviour
     public Canvas finishCanvas;
     public CanvasGroup wrongImage;
     public TextMeshProUGUI clearTimeText;
+    public AudioSource audio;
+    public ParticleSystem[] particleSystems;
     bool isAnswer =false;
     bool isWrong = false;
     bool isClear = false;
     float wrongTime;
     float maxTime = 2;
     float clearTime;
+
 
     [Title("cageCatController")]
     public GameObject cageCat;
@@ -82,7 +85,10 @@ public class QuizController : MonoBehaviour
             isClear = true;
             cageCat.transform.position = offset.transform.position;
             cageCat.transform.rotation = offset.transform.rotation;
-
+            audio.Play();
+            foreach(ParticleSystem part in particleSystems){
+                part.Play();
+            }
             
             Invoke("Dessolve", 0.1f);
         }

@@ -7,7 +7,7 @@ using UnityEngine.XR.ARFoundation;
 //멀티 이미지 트레킹을 하는 스크립트입니다.
 public class ImageTracking : MonoBehaviour
 {
- 
+
     private ARTrackedImageManager trackedImageManager;
 
     [SerializeField]
@@ -15,6 +15,7 @@ public class ImageTracking : MonoBehaviour
     [PreviewField(80, ObjectFieldAlignment.Center)]
     private GameObject[] trackedObjects;
     private Dictionary<string, GameObject> spawnedObjects;
+    public float offset = 90;
 
     void Awake(){
 		//변수들을 초기화합니다. 이미지트레킹에 사용될 오브젝트를 미리생성한뒤 SetActive를꺼줍니다.
@@ -53,10 +54,12 @@ public class ImageTracking : MonoBehaviour
     }
     // 딕셔너리를 이용하여 맞는 오브젝트를 실행합니다(SetActive(true))
 		// 이를 위해 딕셔너리 string값과 오브젝트의 이름을 똑같이 만들어주었습니다.
+    
     void UpdateSpawnObject(ARTrackedImage trackedImage){
         string referImageName = trackedImage.referenceImage.name;
         spawnedObjects[referImageName].transform.position = trackedImage.transform.position;
-        spawnedObjects[referImageName].transform.rotation = trackedImage.transform.rotation;
+        spawnedObjects[referImageName].transform.rotation 
+        = Quaternion.Euler(trackedImage.transform.rotation.x + offset, trackedImage.transform.rotation.y, trackedImage.transform.rotation.z);
 
         spawnedObjects[referImageName].SetActive(true);
     }

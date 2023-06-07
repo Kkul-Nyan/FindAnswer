@@ -8671,7 +8671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: b2bdb79e956224c72ab698e0d47f9861,
     type: 2}
-  m_MaxNumberOfMovingImages: 3
+  m_MaxNumberOfMovingImages: 5
   m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &1659859601
 MonoBehaviour:
@@ -8689,7 +8689,7 @@ MonoBehaviour:
   - {fileID: 4318751445147467437, guid: 3e4a75c8468e846b99d4e7359ea9de73, type: 3}
   - {fileID: 2528079154646403147, guid: dbfbc967b5a7a4d839d4e12d281658e3, type: 3}
   - {fileID: 2694329968347816249, guid: 8cbf8629ff72f4284b15239c4570c8d2, type: 3}
-  offset: 0
+  offset: 90
 --- !u!114 &1659859602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9432,10 +9432,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2528079153972617669, guid: dbfbc967b5a7a4d839d4e12d281658e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2528079154646403147, guid: dbfbc967b5a7a4d839d4e12d281658e3,
         type: 3}
       propertyPath: m_Name
       value: Quiz2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2528079154646403147, guid: dbfbc967b5a7a4d839d4e12d281658e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2528079154646403191, guid: dbfbc967b5a7a4d839d4e12d281658e3,
         type: 3}
@@ -9555,6 +9565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quiz3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694329968347816249, guid: 8cbf8629ff72f4284b15239c4570c8d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2694329968347816253, guid: 8cbf8629ff72f4284b15239c4570c8d2,
         type: 3}
@@ -9779,6 +9794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quiz1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318751445147467437, guid: 3e4a75c8468e846b99d4e7359ea9de73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e4a75c8468e846b99d4e7359ea9de73, type: 3}

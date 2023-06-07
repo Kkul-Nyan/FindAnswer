@@ -11,8 +11,6 @@ public class ImageTracking : MonoBehaviour
     private ARTrackedImageManager trackedImageManager;
 
     [SerializeField]
-    [Title("Prefabs")]
-    [PreviewField(80, ObjectFieldAlignment.Center)]
     private GameObject[] trackedObjects;
     private Dictionary<string, GameObject> spawnedObjects;
     public float offset = 90;
@@ -56,10 +54,11 @@ public class ImageTracking : MonoBehaviour
 		// 이를 위해 딕셔너리 string값과 오브젝트의 이름을 똑같이 만들어주었습니다.
     
     void UpdateSpawnObject(ARTrackedImage trackedImage){
+        Quaternion quaternion = Quaternion.identity;
         string referImageName = trackedImage.referenceImage.name;
         spawnedObjects[referImageName].transform.position = trackedImage.transform.position;
-        spawnedObjects[referImageName].transform.rotation 
-        = Quaternion.Euler(trackedImage.transform.rotation.x + offset, trackedImage.transform.rotation.y, trackedImage.transform.rotation.z);
+        spawnedObjects[referImageName].transform.rotation =  trackedImage.transform.rotation;
+        spawnedObjects[referImageName].transform.Rotate(trackedImage.transform.rotation.x + offset, trackedImage.transform.rotation.y, trackedImage.transform.rotation.z);
 
         spawnedObjects[referImageName].SetActive(true);
     }

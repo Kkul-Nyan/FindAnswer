@@ -33,6 +33,8 @@ public class PlaneAR : MonoBehaviour
                 gameObject.gameObject.SetActive(true);
                 gameObject.transform.SetPositionAndRotation(placePosition.position, placePosition.rotation);
                 madeGoal = true;
+                Destroy(arRaycastManager);
+                Destroy(arPlane);
             }
         } 
     }

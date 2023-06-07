@@ -14,6 +14,7 @@ public class QuizController : MonoBehaviour
     public TMP_InputField answer3;
     public Canvas answerCanvas;
     public Canvas finishCanvas;
+    public Canvas keyCanvas;
     public CanvasGroup wrongImage;
     public TextMeshProUGUI clearTimeText;
     public AudioSource audio;
@@ -89,7 +90,7 @@ public class QuizController : MonoBehaviour
             foreach(ParticleSystem part in particleSystems){
                 part.Play();
             }
-            
+            keyCanvas.gameObject.SetActive(false);
             Invoke("Dessolve", 0.1f);
         }
         else {
